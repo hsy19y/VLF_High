@@ -83,7 +83,7 @@ void loop()
   
   measure_width = L_distance + robot_width + R_distance; // 총 산출값 = 원쪽 센서 감지거리 + 오른쪽 센서 감지거리 + 로봇의 너비
   
-  if((measure_width >= (mazor_width - mazor_width_tolerance))&&(measure_width<=(mazor_width + mazor_width_tolerance))) // 만약 (총 산출값 >= 460), (총 산출값 <=540)가 모두 참일 경우 / 좌측,우측 센서가 감지한 값이 오차범위 40을 고려한 미로의 폭을 감지 할 수 있을 때   
+  if((measure_width >= (mazor_width - mazor_width_tolerance))&&(measure_width<=(mazor_width + mazor_width_tolerance))) // 만약 (총 산출값 >= 460), (총 산출값 <=540)가 모두 참일 경우 / 좌측,우측 센서가 오차범위 40을 고려한 미로의 폭을 감지 할 수 있을 때   
   {
     	if ((F_distance > mazor_width)&&(F_distance < mazor_width + 400)) // (전방 센서 감지값 > 500), (전방 센서 감지값 < 미로의 폭(500) + 400) 두 조건이 모두 참 이라면 / 전방센서 감지값 이 500보다 크고 900보다 작을때, 즉 미로에서 일정한 거리만큼 떨어져 있을 때
     {
