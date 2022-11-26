@@ -8,10 +8,10 @@
 
 int flag_mazor_1 = 0; // 1이면 1번구간에 내가 위치해 있다
 
-int robot_width = 200; 
+int robot_width = 200; // 로봇의 너비 
 int mazor_width = 500; // 미로의 폭
-int mazor_width_tolerance = 40; // 오차범위
-int measure_width;
+int mazor_width_tolerance = 40; // 센서의 오차범위
+int measure_width; // 총 산출값
 
 
 float F_Sonar_sensor()
@@ -81,19 +81,19 @@ void loop()
   Serial.print("  F:"); Serial.print(F_distance); 
   Serial.print("  R:"); Serial.println(R_distance); 
   
-  measure_width = L_distance + robot_width + R_distance;
+  measure_width = L_distance + robot_width + R_distance; // 총 산출값 = 원쪽 센서 감지거리 + 오른쪽 센서 감지거리 + 로봇의 너비
   
-  if((measure_width >= (mazor_width - mazor_width_tolerance))&&(measure_width<=(mazor_width + mazor_width_tolerance)))
+  if((measure_width >= (mazor_width - mazor_width_tolerance))&&(measure_width<=(mazor_width + mazor_width_tolerance))) // 만약 (총 산출값 >= 460), (총 산출값 <=540)가 모두 참일 경우 
   {
-    	if ((F_distance > mazor_width)&&(F_distance < mazor_width + 400))
+    	if ((F_distance > mazor_width)&&(F_distance < mazor_width + 400)) // (전방 센서 감지값 > 500), (전방 센서 감지값 < 미로의 폭(500) + 400) 두 조건이 모두 참 이라면
     {
-          flag_mazor_1 = 1;
-          Serial.println("flag_mazor_1 set");
+          flag_mazor_1 = 1;  // 미로의 falg 값이 1 이다 = 현재 로봇이 1에 위치해 있음
+          Serial.println("flag_mazor_1 set"); // 화면에 flag_mazor_1 set을 출력
     }
   }
-    else
+    else // 혹 거짓 이라면
   {
-      flag_mazor_1 = 0;
+      flag_mazor_1 = 0; // falg 값은 0이다 = 로봇의 현 위치값은 1이 아님
   }
     
   
